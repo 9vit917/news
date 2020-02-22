@@ -1,10 +1,25 @@
 import React from "react";
 
+import Post from "./components/Post";
+
+import posts from "./posts.json";
+
+
 function App() {
   return (
     <div>
-      <h1> Hello World </h1>
-      <div>fuck</div>
+      {
+        posts.map((post, key) => {
+          return (
+            <Post
+              key = {key}
+              title = {post.title}
+              text = {post.description}
+              img = {post.image}
+            />
+          )
+        })
+      }
     </div>
   );
 }
