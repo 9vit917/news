@@ -3,7 +3,7 @@ const cheerio = require('cheerio');
 
 async function parsePost(url, form){
     await unirest.get(url).end(( { body } ) => {
-    
+     
     const $ = cheerio.load(body);
 
     let title = $(form.title).text().trim();
