@@ -10,16 +10,17 @@ function parsePost(url, form) {
             const $ = cheerio.load(body);
             let title = $(form.title).text().trim();
             let description = $(form.description).text().trim();
-            let image = $(form.image).attr('src') || $(form.image).css("background-image").replace(/url\(|\)/gi, '');
+            let image = $(form.image).attr('src') || $(form.image).css("background-image").replace(/url\(\"?\'?|\"?\'?\)/gi, '');
             let views = $(form.views).text().trim();
             
             let post = {
                 title: title,
                 description: description,
                 image: image,
-                views: views
+                views: views,
+                url: url
             }
-    
+            console.log(post);
             resolve(post);
     
         });
@@ -46,7 +47,7 @@ function getPosts(links){
     return new Promise(async (resolve, reject) => {
         
         let posts = [];
-        
+        links = links.filter((el) => el.indexOf('forum') == -1)
         for (let i = 0; i < links.length; i++) {
             await parsePost(links[i], resources.onliner).then(post => posts.push(post));
         }

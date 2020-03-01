@@ -7,11 +7,7 @@ import * as serviceWorker from './serviceWorker';
 
 import store from './store';
 
-import './index.css';
-
-store.subscribe(() => {
-    alert('change');
-});
+import 'semantic-ui-css/semantic.min.css'
 
 render(
     <Provider store={ store }>

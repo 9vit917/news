@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import axios from 'axios';
 import {connect} from 'react-redux';
 import Post from "./components/Post";
+import { Container, Item, Segment } from 'semantic-ui-react'
 
+import posts from "./posts.json";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
   }
 
   componentWillMount() {
@@ -22,7 +23,7 @@ class App extends Component {
     const { posts } = this.props;
     const { items } = posts;
     return (
-      <div>
+      <Container>
         <ul>
           <li>
               <button onClick={() => this.props.changeRegion('BY')} >BY</button>
@@ -31,23 +32,27 @@ class App extends Component {
               <button onClick={() => this.props.changeRegion('RU')}>RU</button>
           </li>
         </ul>
-        {
-          !items.length ? (
-          <span> No news </span>
-          ) : (
-            items.map((post, key) => {
-            return (
-              <Post
-                key = {key}
-                title = {post.title}
-                text = {post.description}
-                img = {post.image}
-              />
+        <Item.Group>
+          {
+            !items.length ? (
+              <Segment loading />
+            ) : (
+              items.map((post, key) => {
+              return (
+                <Post
+                  key = {key}
+                  title = {post.title}
+                  text = {post.description}
+                  img = {post.image}
+                  views = {post.views}
+                  url = {post.url}
+                />
+              )
+            })
             )
-          })
-          )
-        }
-      </div>
+          }
+        </Item.Group>
+      </Container>
     );
   }
 }

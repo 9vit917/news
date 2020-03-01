@@ -9,13 +9,12 @@ let urls = {
 }
 
 const saveResault = (json) => {
-    console.log(__dirname)
     fs.writeFile(__dirname +'../../../src/posts.json', JSON.stringify(json), (err) => {
         if (err) console.log('Not saved');
     })
 
 }
 
-parseLinks(urls.onliner, resources.onliner.link, 3)
+parseLinks(urls.onliner, resources.onliner.link, 25)
 .then(async links => getPosts(links).then(data => saveResault(data)))
 .catch(e => console.log(e));
