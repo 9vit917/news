@@ -1,9 +1,10 @@
 let resources = {
     onliner: {
         title: '.news-header__title h1',
-        description: '.news-entry__speech p',
+        description: '.news-text p',
         image: '.news-header__image',
-        views: '.news-header__button_views'
+        views: '.news-header__button_views',
+        link: '.b-teasers-2 li a'
     },
     sputnic: {
         title: '.b-article__header-title  h1',
